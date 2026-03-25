@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La hostIA que viene - Informe Estratégico Interactivo</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(203, 213, 225, 0.5);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-active {
+            border-bottom: 2px solid #0f766e;
+            color: #0f766e;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-teal-200 selection:text-teal-900">
+
+    <nav class="fixed w-full z-50 glass-panel py-4 px-6 top-0">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="font-bold text-xl tracking-tight text-slate-800">
+                <span class="text-teal-700">IA:</span> La hostIA que viene
+            </div>
+            <div class="flex space-x-4 md:space-x-8 text-sm font-medium overflow-x-auto w-full md:w-auto pb-2 md:pb-0">
+                <a href="#evolucion" class="hover:text-teal-600 transition-colors whitespace-nowrap">1. Evolución Exponencial</a>
+                <a href="#disrupcion" class="hover:text-teal-600 transition-colors whitespace-nowrap">2. Disrupción Científica</a>
+                <a href="#empleo" class="hover:text-teal-600 transition-colors whitespace-nowrap">3. Mercado Laboral</a>
+                <a href="#gobernanza" class="hover:text-teal-600 transition-colors whitespace-nowrap">4. Riesgos y Gobernanza</a>
+                <a href="#plan" class="bg-slate-800 text-white px-4 py-1.5 rounded-full hover:bg-teal-700 transition-colors whitespace-nowrap">Plan IT</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-20 px-6 max-w-6xl mx-auto text-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 leading-tight">
+            Navegando la <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-indigo-600">Súper-Exponencialidad</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed">
+            Basado en el panel de expertos "La hostIA que viene". Este informe interactivo destila las proyecciones críticas sobre cómo la adopción de Agentes Autónomos y el colapso de los costes de computación reescribirán la sociedad, la empresa y el trabajo.
+        </p>
+        <div class="inline-block p-4 bg-teal-50 border-l-4 border-teal-600 rounded-r-lg text-left text-sm text-teal-800 max-w-2xl shadow-sm">
+            <strong>Instrucciones de Navegación:</strong> Explora los gráficos interactuando con las leyendas, selecciona pestañas para profundizar en los riesgos y revisa el Plan de Acción al final del documento.
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 space-y-24 pb-32">
+        <section id="evolucion" class="scroll-mt-28">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4 flex items-center gap-3">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-md text-xl">1</span>
+                    Evolución y Colapso de Costes
+                </h2>
+                <p class="text-slate-600 text-lg leading-relaxed">
+                    <strong>Contexto del Informe:</strong> La transición hacia la Inteligencia Artificial General (AGI) no obedece a curvas tecnológicas estándar. En esta sección exploramos el hito más disruptivo de 2024-2025: la caída precipitada de los costes operativos para tareas de razonamiento complejo, demostrando que la barrera de entrada a la inteligencia de alto nivel está desapareciendo. Interactúa con el gráfico para ver el contraste.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 flex flex-col lg:flex-row gap-10 items-center">
+                <div class="w-full lg:w-1/2">
+                    <div class="chart-container">
+                        <canvas id="costEvolutionChart"></canvas>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <div class="p-6 bg-slate-50 rounded-xl border border-slate-100">
+                        <h3 class="font-bold text-slate-800 text-xl mb-2">Optimización del 4000x</h3>
+                        <p class="text-slate-600 mb-4">
+                            Tareas que requerían una inversión de <strong class="text-red-600">$4,500 USD</strong> mediante modelos tempranos, se han optimizado en tan solo 12 meses a un coste de <strong class="text-teal-600">$1.20 EUR</strong>.
+                        </p>
+                        <div class="flex items-center gap-2 text-sm text-slate-500">
+                            <span class="inline-block w-3 h-3 rounded-full bg-teal-500"></span>
+                            Democratización total del Estado del Arte.
+                        </div>
+                    </div>
+                    <p class="text-slate-600">
+                        Entidades corporativas que antes quedaban fuera de la carrera por falta de músculo financiero, ahora pueden desplegar agentes que rivalizan con laboratorios fundacionales (ej. Xiaomi con Mimo 2), reduciendo el foso competitivo casi a cero.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="disrupcion" class="scroll-mt-28">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4 flex items-center gap-3">
+                    <span class="bg-teal-100 text-teal-700 px-3 py-1 rounded-md text-xl">2</span>
+                    Disrupción Científica y Operativa
+                </h2>
+                <p class="text-slate-600 text-lg leading-relaxed">
+                    <strong>Contexto del Informe:</strong> La IA ha pasado de ser una herramienta de interpolación ("hacer lo mismo más rápido") a un motor de generación de conocimiento neto ("hacer lo imposible"). Aquí visualizamos cómo la IA está superando los límites cognitivos humanos en disciplinas críticas como el diagnóstico médico. Pasa el cursor sobre las barras para ver la comparativa de precisión.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+                    <h3 class="font-bold text-lg text-slate-800 mb-6 text-center">Precisión en Diagnóstico Predictivo (Biopsias)</h3>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="accuracyChart"></canvas>
+                    </div>
+                    <p class="text-sm text-center text-slate-500 mt-4">
+                        Además, modelos actuales detectan anomalías (ej. cáncer de mama) hasta 6 meses antes que especialistas top globales.
+                    </p>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-indigo-50 rounded-2xl p-6 border border-indigo-100 h-full flex flex-col justify-center">
+                        <div class="text-indigo-600 text-4xl font-black mb-4">1000 Millones</div>
+                        <h4 class="text-xl font-bold text-slate-800 mb-2">Años de cálculo humano ahorrados</h4>
+                        <p class="text-slate-600">
+                            <strong>AlphaFold</strong> ha mapeado todas las proteínas conocidas. Un hito que cambia las reglas del juego en las Ciencias de la Vida, acortando décadas de investigación a meros segundos.
+                        </p>
+                        <hr class="my-6 border-indigo-200">
+                        <h4 class="text-xl font-bold text-slate-800 mb-2">El nuevo Peer Review</h4>
+                        <p class="text-slate-600">
+                            Los LLMs actúan ahora como revisores ciegos (peer reviewers), detectando falacias lógicas y destrabando investigaciones estancadas, eliminando el histórico cuello de botella del referato humano.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="empleo" class="scroll-mt-28">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4 flex items-center gap-3">
+                    <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-md text-xl">3</span>
+                    Reestructuración del Mercado Laboral
+                </h2>
+                <p class="text-slate-600 text-lg leading-relaxed">
+                    <strong>Contexto del Informe:</strong> El impacto laboral inminente no se traducirá únicamente en despidos, sino en "ausencia de contratación". El perfil "Junior" está desapareciendo, siendo reemplazado por agentes 24/7. El siguiente gráfico ilustra la nueva dicotomía del empleado y dónde reside ahora el verdadero valor corporativo humano.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 flex flex-col-reverse lg:flex-row gap-10 items-center">
+                <div class="w-full lg:w-1/2 space-y-8">
+                    <div>
+                        <div class="text-4xl font-bold text-orange-600 mb-2">▼ 32%</div>
+                        <h3 class="font-bold text-slate-800 text-xl">Caída en oferta de posiciones Junior</h3>
+                        <p class="text-slate-600 mt-2">
+                            Datos de plataformas de empleo indican que la IA está asumiendo el rol de entrada. Las empresas prefieren no cubrir bajas y delegar esas mecánicas a agentes algorítmicos.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-slate-800 uppercase tracking-wider text-sm">La Nueva Dicotomía:</h4>
+                        <div class="flex gap-4 p-4 rounded-lg bg-teal-50 border border-teal-100">
+                            <div class="text-2xl">🚀</div>
+                            <div>
+                                <strong class="text-teal-800">El Humano Aumentado</strong>
+                                <p class="text-sm text-teal-700 mt-1">Personal que apalanca la IA para lograr métricas de productividad de doble dígito. Valida, crea estrategias y ejerce control ético.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 p-4 rounded-lg bg-red-50 border border-red-100">
+                            <div class="text-2xl">⚠️</div>
+                            <div>
+                                <strong class="text-red-800">El Humano Prescindible</strong>
+                                <p class="text-sm text-red-700 mt-1">Personal que se niega a la adopción y compite en la ejecución de tareas mecánicas repetitivas contra agentes de coste marginal cero.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <h3 class="text-center font-bold text-slate-700 mb-4">Distribución Proyectada del Valor Operativo Humano</h3>
+                    <div class="chart-container">
+                        <canvas id="laborChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gobernanza" class="scroll-mt-28">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4 flex items-center gap-3">
+                    <span class="bg-rose-100 text-rose-700 px-3 py-1 rounded-md text-xl">4</span>
+                    Riesgos Críticos y Gobernanza
+                </h2>
+                <p class="text-slate-600 text-lg leading-relaxed">
+                    <strong>Contexto del Informe:</strong> La falta de gobernanza crea vulnerabilidades sistémicas. A nivel corporativo, surgen amenazas asimétricas (ciberseguridad) e internas (atrofia intelectual). A nivel macro, las estrategias nacionales definirán el foso competitivo de la próxima década. Explora los riesgos en las pestañas y analiza los modelos geopolíticos en la tabla.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-5 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <div class="flex border-b border-slate-200 bg-slate-50">
+                        <button onclick="switchTab('cyber')" id="tab-cyber" class="flex-1 py-4 text-center font-medium tab-active transition-colors">
+                            Ciberseguridad
+                        </button>
+                        <button onclick="switchTab('cognitive')" id="tab-cognitive" class="flex-1 py-4 text-center font-medium text-slate-500 hover:text-slate-800 transition-colors">
+                            Delegación Cognitiva
+                        </button>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <div id="content-cyber" class="block space-y-4">
+                            <div class="inline-block px-3 py-1 bg-rose-100 text-rose-700 rounded-full text-xs font-bold uppercase tracking-wide">Crimen Asimétrico</div>
+                            <h3 class="text-xl font-bold text-slate-800">Automatización del Ataque</h3>
+                            <p class="text-slate-600">La capacidad del crimen organizado supera la respuesta estatal. Las infraestructuras de seguridad tradicionales están obsoletas.</p>
+                            <ul class="space-y-3 mt-4 text-slate-600">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-rose-500 mt-1">■</span> 
+                                    <span><strong>Deepfakes & Spoofing:</strong> Clonación de voz requiere apenas 10 segundos de muestra para orquestar fraudes financieros directos.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-rose-500 mt-1">■</span> 
+                                    <span><strong>Ataques Escalables:</strong> Uso de IA para explotar masiva y automáticamente bases de datos filtradas.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-rose-500 mt-1">■</span> 
+                                    <span><strong>Fallo de 2FA:</strong> Los SMS y contraseñas simples ya no son barreras válidas ante ingeniería social potenciada por IA.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="content-cognitive" class="hidden space-y-4">
+                            <div class="inline-block px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-bold uppercase tracking-wide">Riesgo Interno</div>
+                            <h3 class="text-xl font-bold text-slate-800">El Riesgo de Atrofia</h3>
+                            <p class="text-slate-600">Delegar el razonamiento profundo y la ética a las máquinas provoca un declive intelectual directo en las plantillas humanas.</p>
+                            <ul class="space-y-3 mt-4 text-slate-600">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-amber-500 mt-1">■</span> 
+                                    <span><strong>Pérdida de "Olfato":</strong> Desconexión analógica que incapacita a los profesionales para operar en escenarios de bajos recursos (escenario <em>unplug</em>).</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-amber-500 mt-1">■</span> 
+                                    <span><strong>Falta de Validación:</strong> Delegar el criterio final a la IA asumiendo infalibilidad técnica.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-amber-500 mt-1">■</span> 
+                                    <span><strong>Solución (Gimnasios Cognitivos):</strong> Necesidad de mantener rutinas de pensamiento crítico y auditoría humana obligatoria.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-slate-900 rounded-2xl shadow-sm p-6 text-white overflow-x-auto">
+                    <h3 class="text-xl font-bold mb-6 text-teal-400">Modelos Geopolíticos de Gobernanza</h3>
+                    <table class="w-full text-left border-collapse min-w-[500px]">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400 text-sm tracking-wider">
+                                <th class="pb-3 px-2 font-semibold">Región / Modelo</th>
+                                <th class="pb-3 px-2 font-semibold">Estrategia Implementada</th>
+                                <th class="pb-3 px-2 font-semibold">Resultado Operativo</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr class="border-b border-slate-800 hover:bg-slate-800 transition-colors">
+                                <td class="py-4 px-2 align-top">
+                                    <strong class="block text-white">Singapur / EAU</strong>
+                                    <span class="text-xs text-teal-500">Integración Centralizada</span>
+                                </td>
+                                <td class="py-4 px-2 align-top text-slate-300">App única ciudadana gestionada por IA. Cursos obligatorios para TODO el aparato público.</td>
+                                <td class="py-4 px-2 align-top text-slate-300">Alta eficiencia administrativa. Población digitalizada y altamente competitiva.</td>
+                            </tr>
+                            <tr class="border-b border-slate-800 hover:bg-slate-800 transition-colors">
+                                <td class="py-4 px-2 align-top">
+                                    <strong class="block text-white">China</strong>
+                                    <span class="text-xs text-indigo-400">Adopción Masiva</span>
+                                </td>
+                                <td class="py-4 px-2 align-top text-slate-300">Despliegue financiado por el estado de Agentes (ej. OpenClue) a nivel ciudadano.</td>
+                                <td class="py-4 px-2 align-top text-slate-300">Asimilación cultural inmediata. Creación masiva de talento nativo desde la base.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800 transition-colors">
+                                <td class="py-4 px-2 align-top">
+                                    <strong class="block text-white">Europa / España</strong>
+                                    <span class="text-xs text-rose-400">Desregulación / Retraso</span>
+                                </td>
+                                <td class="py-4 px-2 align-top text-slate-300">Iniciativas aisladas de financiación. Alta burocracia. Falta de foco estratégico unificado.</td>
+                                <td class="py-4 px-2 align-top text-slate-300">Alta dependencia de tecnología externa. Riesgo inminente de pérdida de competitividad global.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="plan" class="scroll-mt-28">
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-xl border border-slate-700 p-8 md:p-12 text-white">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-white mb-4 flex items-center gap-3">
+                        <span class="bg-teal-500 text-slate-900 px-3 py-1 rounded-md text-xl">5</span>
+                        Plan de Acción Recomendado para Gerencia IT
+                    </h2>
+                    <p class="text-slate-300 text-lg">
+                        <strong>Contexto del Informe:</strong> Para alinear las operaciones corporativas con esta nueva realidad de Agentes Autónomos y mitigar los riesgos delineados, se requiere un plan de choque inmediato. Utiliza este checklist interactivo para marcar el progreso de tu infraestructura.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <label class="flex items-start gap-4 p-5 rounded-xl bg-slate-800 border border-slate-700 hover:border-teal-500 cursor-pointer transition-all group">
+                        <div class="mt-1">
+                            <input type="checkbox" class="w-6 h-6 rounded border-slate-600 text-teal-500 focus:ring-teal-500 bg-slate-700 cursor-pointer" onclick="toggleTask(this)">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1 group-hover:text-teal-400 transition-colors">Auditoría de Tareas (Agent-Readiness)</h4>
+                            <p class="text-sm text-slate-400">Mapear flujos de trabajo en el ciclo de vida del proyecto que puedan ser delegados a agentes 24/7. Identificar cuellos de botella mecánicos.</p>
+                        </div>
+                    </label>
+
+                    <label class="flex items-start gap-4 p-5 rounded-xl bg-slate-800 border border-slate-700 hover:border-teal-500 cursor-pointer transition-all group">
+                        <div class="mt-1">
+                            <input type="checkbox" class="w-6 h-6 rounded border-slate-600 text-teal-500 focus:ring-teal-500 bg-slate-700 cursor-pointer" onclick="toggleTask(this)">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1 group-hover:text-teal-400 transition-colors">Actualización de Seguridad (Zero Trust)</h4>
+                            <p class="text-sm text-slate-400">Migrar inmediatamente de autenticaciones vulnerables (SMS 2FA) a firmas biométricas y arquitecturas Zero Trust robustas contra Deepfakes.</p>
+                        </div>
+                    </label>
+
+                    <label class="flex items-start gap-4 p-5 rounded-xl bg-slate-800 border border-slate-700 hover:border-teal-500 cursor-pointer transition-all group">
+                        <div class="mt-1">
+                            <input type="checkbox" class="w-6 h-6 rounded border-slate-600 text-teal-500 focus:ring-teal-500 bg-slate-700 cursor-pointer" onclick="toggleTask(this)">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1 group-hover:text-teal-400 transition-colors">Manifiesto Ético AI Corporativo</h4>
+                            <p class="text-sm text-slate-400">Establecer políticas innegociables: declaración de uso de IA en todos los entregables y validación humana final obligatoria como medida contra la atrofia.</p>
+                        </div>
+                    </label>
+
+                    <label class="flex items-start gap-4 p-5 rounded-xl bg-slate-800 border border-slate-700 hover:border-teal-500 cursor-pointer transition-all group">
+                        <div class="mt-1">
+                            <input type="checkbox" class="w-6 h-6 rounded border-slate-600 text-teal-500 focus:ring-teal-500 bg-slate-700 cursor-pointer" onclick="toggleTask(this)">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1 group-hover:text-teal-400 transition-colors">Upskilling Obligatorio del Personal</h4>
+                            <p class="text-sm text-slate-400">Implementar cuotas formativas continuas para transformar a todo el personal técnico en "Humanos Aumentados", previniendo la obsolescencia.</p>
+                        </div>
+                    </label>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <div id="progressText" class="text-sm font-bold text-teal-400 uppercase tracking-widest">Progreso de Implementación: 0%</div>
+                    <div class="w-full bg-slate-700 rounded-full h-2 mt-3 overflow-hidden">
+                        <div id="progressBar" class="bg-teal-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-10 text-center text-sm border-t border-slate-800">
+        <p>Informe Estratégico Interactivo - Basado en los debates de "La hostIA que viene".</p>
+        <p class="mt-2">Desarrollado para facilitar la arquitectura de información y toma de decisiones.</p>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            document.getElementById('tab-cyber').className = "flex-1 py-4 text-center font-medium text-slate-500 hover:text-slate-800 transition-colors";
+            document.getElementById('tab-cognitive').className = "flex-1 py-4 text-center font-medium text-slate-500 hover:text-slate-800 transition-colors";
+            
+            document.getElementById('content-cyber').classList.add('hidden');
+            document.getElementById('content-cyber').classList.remove('block');
+            document.getElementById('content-cognitive').classList.add('hidden');
+            document.getElementById('content-cognitive').classList.remove('block');
+            
+            document.getElementById('tab-' + tabId).className = "flex-1 py-4 text-center font-medium tab-active transition-colors";
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            document.getElementById('content-' + tabId).classList.add('block');
+        }
+
+        function toggleTask(checkbox) {
+            const container = checkbox.closest('label');
+            if (checkbox.checked) {
+                container.classList.add('bg-slate-700', 'border-teal-500');
+                container.classList.remove('bg-slate-800', 'border-slate-700');
+            } else {
+                container.classList.remove('bg-slate-700', 'border-teal-500');
+                container.classList.add('bg-slate-800', 'border-slate-700');
+            }
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('#plan input[type="checkbox"]');
+            const checked = document.querySelectorAll('#plan input[type="checkbox"]:checked');
+            const percentage = Math.round((checked.length / checkboxes.length) * 100);
+            
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressText').innerText = `Progreso de Implementación: ${percentage}%`;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            Chart.defaults.font.family = "'Inter', sans-serif";
+            Chart.defaults.color = '#64748b';
+
+            const ctxCost = document.getElementById('costEvolutionChart').getContext('2d');
+            new Chart(ctxCost, {
+                type: 'line',
+                data: {
+                    labels: ['Modelos Base (2022)', 'Razonamiento (Temprano)', 'Optimización (12 meses)'],
+                    datasets: [{
+                        label: 'Coste Operativo (USD)',
+                        data: [4500, 1500, 1.2],
+                        borderColor: '#0f766e',
+                        backgroundColor: 'rgba(15, 118, 110, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#0f766e',
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return '$' + context.raw + ' USD';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            title: { display: true, text: 'Coste (Escala Logarítmica)' }
+                        }
+                    }
+                }
+            });
+
+            const ctxAcc = document.getElementById('accuracyChart').getContext('2d');
+            new Chart(ctxAcc, {
+                type: 'bar',
+                data: {
+                    labels: ['Análisis Humano Base', 'Soporte Algorítmico (IA)'],
+                    datasets: [{
+                        label: 'Precisión de Diagnóstico (%)',
+                        data: [78, 99],
+                        backgroundColor: ['#94a3b8', '#4f46e5'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.raw + '% de Precisión';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: { display: true, text: 'Porcentaje (%)' }
+                        }
+                    }
+                }
+            });
+
+            const ctxLabor = document.getElementById('laborChart').getContext('2d');
+            new Chart(ctxLabor, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        'Validación, Estrategia, Ética (Humano Aumentado)',
+                        'Resolución de Problemas Complejos',
+                        'Tareas Repetitivas (Riesgo)'
+                    ],
+                    datasets: [{
+                        data: [60, 25, 15],
+                        backgroundColor: ['#0f766e', '#6366f1', '#ef4444'],
+                        borderWidth: 0,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                                generateLabels: function(chart) {
+                                    const data = chart.data;
+                                    if (data.labels.length && data.datasets.length) {
+                                        return data.labels.map(function(label, i) {
+                                            const meta = chart.getDatasetMeta(0);
+                                            const style = meta.controller.getStyle(i);
+                                            let finalLabel = label;
+                                            if (label.length > 25) {
+                                                finalLabel = label.substring(0, 25) + '...';
+                                            }
+                                            return {
+                                                text: finalLabel,
+                                                fillStyle: style.backgroundColor,
+                                                hidden: isNaN(data.datasets[0].data[i]) || meta.data[i].hidden,
+                                                index: i
+                                            };
+                                        });
+                                    }
+                                    return [];
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
